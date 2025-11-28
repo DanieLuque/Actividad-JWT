@@ -20,7 +20,8 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, Sp
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('tasks.urls')),
+    path('api/', include('api.urls')),
+    path('api/tasks-auth/', include('tasks.urls')),
     
     # Swagger y ReDoc
     path('swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
