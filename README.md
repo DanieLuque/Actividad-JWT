@@ -339,44 +339,8 @@ print(response.json())
 - ✅ Las contraseñas se almacenan encriptadas
 - ✅ Validación de tokens JWT en cada request
 
-## Troubleshooting
-
-### Error de conexión a MySQL
-
-1. Verifica que MySQL server está corriendo
-2. Verifica las credenciales en `.env`
-3. Verifica que la base de datos existe
-
-```bash
-mysql -u root -p -e "SHOW DATABASES;"
-```
-
-### Error de migraciones
-
-```bash
-python manage.py migrate --run-syncdb
-```
-
-### Token expirado
-
-Usa el refresh token para obtener un nuevo access token:
-
-```bash
-curl -X POST http://localhost:8000/api/auth/refresh/ \
-  -H "Content-Type: application/json" \
-  -d '{"refresh": "<refresh_token>"}'
-```
-
-## Más información
-
-- [Django REST Framework](https://www.django-rest-framework.org/)
-- [djangorestframework-simplejwt](https://github.com/jpadilla/django-rest-framework-simplejwt)
-- [drf-spectacular](https://github.com/tfranzel/drf-spectacular)
-- [Django Documentation](https://docs.djangoproject.com/)
-- [JWT.io](https://jwt.io/)
-
 ---
-
 **Creado**: 28 de noviembre de 2025
 **Versión**: 2.0
-**Estado**: ✅ Completado y funcional
+**Estado**:  Completado y funcional
+
