@@ -317,6 +317,25 @@ print(response.json())
 ```
 
 ## App `tasks` vs App `api`
+<<<<<<< HEAD
+=======
+
+### App `tasks`
+- **Responsabilidad:** Autenticación de usuarios
+- **Endpoints:** `/api/tasks-auth/auth/register/`, `/api/tasks-auth/auth/login/`
+- **ViewSets:** Login, Registro, Refresh Token
+- **Modelos:** User, Task
+
+### App `api`
+- **Responsabilidad:** Gestión de tareas (CRUD)
+- **Endpoints:** `/api/users/`, `/api/tasks/`
+- **ViewSets:** UserViewSet, TaskViewSet
+- **Modelos:** Importa de `tasks`
+
+**Ambas apps coexisten:** `tasks` maneja autenticación, `api` maneja datos
+
+## Permisos y Seguridad
+>>>>>>> app-api-Mancera
 
 ### App `tasks`
 - **Responsabilidad:** Autenticación de usuarios
@@ -334,3 +353,35 @@ print(response.json())
 
 
 
+<<<<<<< HEAD
+=======
+### Error de migraciones
+
+```bash
+python manage.py migrate --run-syncdb
+```
+
+### Token expirado
+
+Usa el refresh token para obtener un nuevo access token:
+
+```bash
+curl -X POST http://localhost:8000/api/auth/refresh/ \
+  -H "Content-Type: application/json" \
+  -d '{"refresh": "<refresh_token>"}'
+```
+
+## Más información
+
+- [Django REST Framework](https://www.django-rest-framework.org/)
+- [djangorestframework-simplejwt](https://github.com/jpadilla/django-rest-framework-simplejwt)
+- [drf-spectacular](https://github.com/tfranzel/drf-spectacular)
+- [Django Documentation](https://docs.djangoproject.com/)
+- [JWT.io](https://jwt.io/)
+
+---
+
+**Creado**: 28 de noviembre de 2025
+**Versión**: 2.0
+**Estado**: ✅ Completado y funcional
+>>>>>>> app-api-Mancera
