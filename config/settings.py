@@ -177,12 +177,5 @@ SPECTACULAR_SETTINGS = {
     'TITLE': 'API Gestión de Tareas',
     'DESCRIPTION': 'Sistema de gestión de tareas con autenticación JWT',
     'VERSION': '1.0.0',
-    'SERVE_PERMISSIONS': ['rest_framework.permissions.AllowAny'],
-    'SERVE_AUTHENTICATION': None,
-    'SERVERS': [
-        {
-            'url': 'http://localhost:8000',
-            'description': 'Servidor Local',
-        },
-    ],
+    
 }
