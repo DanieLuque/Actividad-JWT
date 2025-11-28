@@ -39,19 +39,19 @@ pip install -r requirements.txt
 
 ### 3. Configurar variables de entorno
 
-Edita el archivo `.env` con tus credenciales MySQL:
+Edita el archivo `.env.example` con tus credenciales MySQL:
 
 ```env
 DEBUG=True
-SECRET_KEY=tu-secret-key
+SECRET_KEY=
 
 # MySQL Configuration
-DB_ENGINE=django.db.backends.mysql
-DB_NAME=task_management_db
-DB_USER=root
-DB_PASSWORD=root
-DB_HOST=localhost
-DB_PORT=3306
+DB_ENGINE=
+DB_NAME=
+DB_USER=
+DB_PASSWORD=
+DB_HOST=
+DB_PORT=
 
 # JWT Configuration
 JWT_ALGORITHM=HS256
@@ -332,15 +332,5 @@ print(response.json())
 
 **Ambas apps coexisten:** `tasks` maneja autenticación, `api` maneja datos
 
-## Permisos y Seguridad
 
-- ✅ Solo usuarios autenticados pueden acceder a la API
-- ✅ Cada usuario solo puede ver y modificar sus propias tareas
-- ✅ Las contraseñas se almacenan encriptadas
-- ✅ Validación de tokens JWT en cada request
-
----
-**Creado**: 28 de noviembre de 2025
-**Versión**: 2.0
-**Estado**:  Completado y funcional
 
