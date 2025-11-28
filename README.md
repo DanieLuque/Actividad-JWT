@@ -1,6 +1,6 @@
 # Actividad-JWT - Sistema de Gestión de Tareas con JWT
 
-Sistema de gestión de tareas RESTful implementado con Django REST Framework (DRF) y autenticación JWT (Simple JWT), sin templates HTML.
+Sistema de gestión de tareas RESTful implementado con Django REST Framework (DRF) y autenticación JWT (Simple JWT), sin templates HTML. Proyecto con dos apps: `tasks` (autenticación) y `api` (CRUD de tareas).
 
 ## Características
 
@@ -12,6 +12,8 @@ Sistema de gestión de tareas RESTful implementado con Django REST Framework (DR
 - ✅ Permiso de usuario para acceder solo sus propias tareas
 - ✅ API RESTful completa sin templates
 - ✅ Panel de administración Django
+- ✅ Documentación interactiva con Swagger y ReDoc
+- ✅ Dos apps: `tasks` (autenticación) y `api` (gestión de tareas)
 
 ## Requisitos
 
@@ -81,20 +83,27 @@ El servidor estará disponible en: `http://localhost:8000`
 ```
 Actividad-JWT/
 ├── config/                    # Configuración principal del proyecto
-│   ├── settings.py           # Configuración de Django y JWT
+│   ├── settings.py           # Configuración de Django, DRF, JWT
 │   ├── urls.py               # URLs principales
 │   ├── asgi.py               # ASGI
 │   └── wsgi.py               # WSGI
-├── tasks/                     # Aplicación principal
-│   ├── models.py             # Modelos (Task)
-│   ├── views.py              # Vistas y ViewSets de API
-│   ├── serializers.py        # Serializadores de datos
-│   ├── urls.py               # URLs de la API
+├── tasks/                     # App de Autenticación
+│   ├── models.py             # Modelos (Task, User)
+│   ├── views.py              # ViewSets de autenticación
+│   ├── serializers.py        # Serializadores
+│   ├── urls.py               # URLs de autenticación
 │   ├── admin.py              # Panel de administración
 │   └── migrations/           # Migraciones de base de datos
+├── api/                       # App de Gestión de Tareas
+│   ├── views.py              # ViewSets (UserViewSet, TaskViewSet)
+│   ├── serializers.py        # Serializadores (UserSerializer, TaskSerializer)
+│   ├── urls.py               # URLs de la API
+│   ├── apps.py               # Configuración de la app
+│   └── migrations/           # Migraciones
 ├── .env                       # Variables de entorno
 ├── manage.py                  # Script de gestión de Django
-└── create_db.bat             # Script para crear BD (Windows)
+├── requirements.txt           # Dependencias
+└── README.md                  # Este archivo
 ```
 
 ## Endpoints de la API
@@ -128,6 +137,18 @@ Actividad-JWT/
 | GET | `/api/tasks/by_status/?status=pending` | Filtrar por estado |
 | GET | `/api/tasks/by_priority/?priority=high` | Filtrar por prioridad |
 | PATCH | `/api/tasks/{id}/mark_completed/` | Marcar como completada |
+
+## Dependencias
+
+| Paquete | Versión | Función |
+|---------|---------|---------|
+| Django | 5.2.8 | Framework web principal |
+| djangorestframework | 3.16.1 | Framework para crear APIs REST |
+| djangorestframework-simplejwt | 5.5.1 | Autenticación JWT |
+| drf-spectacular | 0.27.0 | Documentación OpenAPI (Swagger, ReDoc) |
+| mysqlclient | 2.2.7 | Driver MySQL |
+| python-decouple | 3.8 | Lector de variables de entorno (.env) |
+| PyJWT | 2.10.1 | Manejo de tokens JWT |
 
 ## Ejemplo de Uso con cURL
 
@@ -295,6 +316,22 @@ response = requests.get(
 print(response.json())
 ```
 
+## App `tasks` vs App `api`
+
+### App `tasks`
+- **Responsabilidad:** Autenticación de usuarios
+- **Endpoints:** `/api/tasks-auth/auth/register/`, `/api/tasks-auth/auth/login/`
+- **ViewSets:** Login, Registro, Refresh Token
+- **Modelos:** User, Task
+
+### App `api`
+- **Responsabilidad:** Gestión de tareas (CRUD)
+- **Endpoints:** `/api/users/`, `/api/tasks/`
+- **ViewSets:** UserViewSet, TaskViewSet
+- **Modelos:** Importa de `tasks`
+
+**Ambas apps coexisten:** `tasks` maneja autenticación, `api` maneja datos
+
 ## Permisos y Seguridad
 
 - ✅ Solo usuarios autenticados pueden acceder a la API
@@ -334,9 +371,12 @@ curl -X POST http://localhost:8000/api/auth/refresh/ \
 
 - [Django REST Framework](https://www.django-rest-framework.org/)
 - [djangorestframework-simplejwt](https://github.com/jpadilla/django-rest-framework-simplejwt)
+- [drf-spectacular](https://github.com/tfranzel/drf-spectacular)
 - [Django Documentation](https://docs.djangoproject.com/)
+- [JWT.io](https://jwt.io/)
 
 ---
 
 **Creado**: 28 de noviembre de 2025
-**Versión**: 1.0
+**Versión**: 2.0
+**Estado**: ✅ Completado y funcional
